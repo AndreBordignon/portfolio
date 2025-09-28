@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, User, Briefcase, MessageCircle } from 'lucide-react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import pokedex from '../../public/pokedex.png';
 
 const Portfolio = () => {
@@ -40,7 +40,7 @@ const Portfolio = () => {
     description: string;
     tech: string[];
     github: string;
-    image: string;
+    image: StaticImageData;
     demo?: string;
   };
 
