@@ -118,7 +118,7 @@ const Portfolio = () => {
       <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16">
         <div className="max-w-4xl mx-auto text-center">
           <div className="w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mx-auto mb-8 flex items-center justify-center text-4xl font-bold">
-            JP
+            AB
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             André Bordignon
