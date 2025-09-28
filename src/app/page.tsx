@@ -199,7 +199,6 @@ const Portfolio = () => {
       {/* Projects Section */}
       <section id="projects" className="py-20 px-4 bg-gray-800/50">
         <div className="max-w-6xl mx-auto">
-      // demo: "https://pokedex-demo-url.com", // Adicione um link demo se existir
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Meus Projetos</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6"></div>
@@ -317,7 +316,7 @@ const Portfolio = () => {
             <div className="mt-6">
               <label className="block text-sm font-medium mb-2">Mensagem</label>
               <textarea
-                rows="5"
+                rows={5}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Sua mensagem..."
               ></textarea>
