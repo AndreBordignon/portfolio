@@ -35,7 +35,16 @@ const Portfolio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const projects = [
+  type Project = {
+    title: string;
+    description: string;
+    tech: string[];
+    github: string;
+    image: string;
+    demo?: string;
+  };
+
+  const projects: Project[] = [
     {
       title: "Pokedex App",
       description: "Aplicativo de gerenciamento de tarefas com recursos de colaboração em tempo real, usando Socket.io e React.",
@@ -190,6 +199,7 @@ const Portfolio = () => {
       {/* Projects Section */}
       <section id="projects" className="py-20 px-4 bg-gray-800/50">
         <div className="max-w-6xl mx-auto">
+      // demo: "https://pokedex-demo-url.com", // Adicione um link demo se existir
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">Meus Projetos</h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6"></div>
@@ -229,6 +239,7 @@ const Portfolio = () => {
                       <Github size={18} />
                       <span>Código</span>
                     </a>
+                    {project.demo && (
                     <a
                       href={project.demo}
                       target='_blank'
@@ -236,7 +247,7 @@ const Portfolio = () => {
                     >
                       <ExternalLink size={18} />
                       <span>Demo</span>
-                    </a>
+                    </a>)}
                   </div>
                 </div>
               </div>
