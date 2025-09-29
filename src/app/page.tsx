@@ -8,7 +8,7 @@ import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
 
 const Portfolio = () => {
-  const text = 'Bem vindo ao meu portfólio :)'
+  const text = 'André Bordignon'
   const [displayedText, setDisplayedText] = useState('')
   const [index, setIndex] = useState(0)
   const [activeSection, setActiveSection] = useState('home');
@@ -187,8 +187,7 @@ const handleSubmit = async (e: any) => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
           <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-500 bg-clip-text text-transparent">
-              {displayedText.slice(0, -2)}
-              <span className="animate-pulse-slow text-purple-500">{displayedText.slice(-2)}</span>
+              Bem vindo ao meu portfólio :)
           </div>
             
             {/* Desktop Menu */}
@@ -252,7 +251,7 @@ const handleSubmit = async (e: any) => {
             AB
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            André Bordignon<span className='animate-pulse-0-slow text-pink-500'>|</span>
+            {displayedText}<span className='animate-pulse-0-slow text-pink-500'>|</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8">
             Desenvolvedor Front-End | React | React Native
