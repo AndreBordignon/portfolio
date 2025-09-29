@@ -1,19 +1,56 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Github, Linkedin, Mail, ExternalLink, Code, User, Briefcase, MessageCircle } from 'lucide-react';
 import Image, { StaticImageData } from 'next/image';
 import pokedex from '../../public/pokedex.png';
+import emailjs from '@emailjs/browser';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [formStatus, setFormStatus] = useState({ type: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
     setIsMenuOpen(false);
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
+  const YOUR_EMAIL = process.env.NEXT_PUBLIC_EMAILJS_SEND_EMAIL;
+
+  // Configurações do EmailJS - SUBSTITUA com suas credenciais
+  const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "";
+  const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "";
+  const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "";
+
+    async function handleCaptchaSubmission(token: string | null) {
+    try {
+      if (token) {
+        await fetch("/api", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        });
+        setIsVerified(true);
+      }
+    } catch (error: any) {
+      console.error("Erro ao verificar o reCAPTCHA:", error);
+      setIsVerified(false);
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +72,77 @@ const Portfolio = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+ const handleInputChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setFormStatus({ type: '', message: '' });
+
+    // Validação básica
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+      setFormStatus({ type: 'error', message: 'Por favor, preencha todos os campos.' });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validação de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setFormStatus({ type: 'error', message: 'Por favor, insira um email válido.' });
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Preparar os parâmetros do template
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: YOUR_EMAIL,
+      };
+
+      // Enviar email usando EmailJS
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      console.log('Email enviado com sucesso!', response.status, response.text);
+
+      setFormStatus({ 
+        type: 'success', 
+        message: 'Mensagem enviada com sucesso! Obrigado pelo contato, responderemos em breve.' 
+      });
+
+      // Limpar formulário
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+
+    } catch (error) {
+      console.error('Erro ao enviar email:', error);
+      setFormStatus({ 
+        type: 'error', 
+        message: 'Erro ao enviar mensagem. Por favor, tente novamente mais tarde.' 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   type Project = {
     title: string;
     description: string;
@@ -287,10 +395,23 @@ const Portfolio = () => {
 
           <div className="bg-gray-800 rounded-xl p-8">
             <h3 className="text-2xl font-semibold mb-6 text-center">Envie uma Mensagem</h3>
+            {formStatus.message && (
+              <div className={`mb-6 p-4 rounded-lg ${
+                formStatus.type === 'success' 
+                  ? 'bg-green-900/50 border border-green-700 text-green-300' 
+                  : 'bg-red-900/50 border border-red-700 text-red-300'
+              }`}>
+                {formStatus.message}
+              </div>
+            )}
+            <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2">Nome</label>
                 <input
+                  value={formData.name}
+                  name='name'
+                  onChange={handleInputChange}
                   type="text"
                   className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="Seu nome"
@@ -299,6 +420,9 @@ const Portfolio = () => {
               <div>
                 <label className="block text-sm font-medium mb-2">Email</label>
                 <input
+                  value={formData.email}
+                  name='email'
+                  onChange={handleInputChange}
                   type="email"
                   className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="seu@email.com"
@@ -309,6 +433,9 @@ const Portfolio = () => {
               <label className="block text-sm font-medium mb-2">Assunto</label>
               <input
                 type="text"
+                name='subject'
+                value={formData.subject}
+                onChange={handleInputChange}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Assunto da mensagem"
               />
@@ -316,16 +443,27 @@ const Portfolio = () => {
             <div className="mt-6">
               <label className="block text-sm font-medium mb-2">Mensagem</label>
               <textarea
+                value={formData.message}
                 rows={5}
+                name='message'
+                onChange={handleInputChange}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="Sua mensagem..."
               ></textarea>
             </div>
             <div className="mt-6 text-center">
-              <button className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold">
-                Enviar Mensagem
+                    <ReCAPTCHA
+                      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+                      ref={recaptchaRef}
+                      onChange={(token) => handleCaptchaSubmission(token)}
+                      onExpired={() => setIsVerified(false)}
+                    />
+                  <button type='submit' disabled={!isVerified} onClick={(e) => handleSubmit(e)} className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold">
+                
+                  {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
               </button>
             </div>
+            </form>
           </div>
         </div>
       </section>
