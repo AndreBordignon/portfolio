@@ -188,7 +188,7 @@ const handleSubmit = async (e: any) => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 ${
+                  className={`flex items-center space-x-2 px-3 py-2 cursor-pointer rounded-lg transition-all duration-300 ${
                     activeSection === item.id 
                       ? 'bg-blue-600 text-white' 
                       : 'text-gray-300 hover:text-white hover:bg-gray-800'
@@ -250,13 +250,13 @@ const handleSubmit = async (e: any) => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => scrollToSection('projects')}
-              className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold"
+              className="px-8 py-3 bg-gradient-to-r cursor-pointer from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold"
             >
               Ver Projetos
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="px-8 py-3 border border-gray-600 rounded-lg hover:border-gray-500 hover:bg-gray-800 transition-all duration-300"
+              className="px-8 py-3 border cursor-pointer border-gray-600 rounded-lg hover:border-gray-500 hover:bg-gray-800 transition-all duration-300"
             >
               Entre em Contato
             </button>
@@ -293,7 +293,7 @@ const handleSubmit = async (e: any) => {
                 {skills.map((skill, index) => (
                   <div
                     key={index}
-                    className="bg-gray-800 px-4 py-2 rounded-lg text-center hover:bg-gray-700 transition-all duration-300"
+                    className="bg-gray-800 px-4 py-2 rounded-lg text-center hover:bg-blue-700 transition-all duration-300"
                   >
                     {skill}
                   </div>
@@ -458,7 +458,7 @@ const handleSubmit = async (e: any) => {
                       onChange={(token) => handleCaptchaSubmission(token)}
                       onExpired={() => setIsVerified(false)}
                     />
-                  <button type='submit' disabled={!isVerified} onClick={(e) => handleSubmit(e)} className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold">
+                  <button type='submit' disabled={!isVerified} onClick={(e) => handleSubmit(e)} className="w-full cursor-pointer px-8 py-3 mt-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold">
                 
                   {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
               </button>
