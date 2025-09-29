@@ -6,6 +6,7 @@ import Image, { StaticImageData } from 'next/image';
 import pokedex from '../../public/pokedex.png';
 import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
+import NewsletterForm from './components/NewsletterForm';
 
 const Portfolio = () => {
   const text = 'André Bordignon'
@@ -480,8 +481,11 @@ const handleSubmit = async (e: any) => {
           </div>
         </div>
       </section>
+
+
      {/* Footer */}
-     <script async data-uid="9c4608b9ec" src="https://andre-bordignon-newsletter.kit.com/9c4608b9ec/index.js"></script>
+
+      <NewsletterForm />
       <footer className="bg-gray-800 py-8 px-4 border-t border-gray-700">
         <div className="max-w-6xl mx-auto text-center">
           <p className="text-gray-400">
