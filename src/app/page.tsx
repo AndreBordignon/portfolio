@@ -8,6 +8,9 @@ import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
 
 const Portfolio = () => {
+  const text = 'Bem vindo ao meu portfólio :)'
+  const [displayedText, setDisplayedText] = useState('')
+  const [index, setIndex] = useState(0)
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -20,6 +23,16 @@ const Portfolio = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  useEffect(() => {
+    if (index < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText((prev) => prev + text.charAt(index))
+        setIndex(index + 1)
+      }, 40) // velocidade do typewriter
+      return () => clearTimeout(timeout)
+    }
+  }, [index, text])
 
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -173,9 +186,10 @@ const handleSubmit = async (e: any) => {
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm border-b border-gray-800 z-50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16">
-            <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Portfolio
-            </div>
+          <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-500 bg-clip-text text-transparent">
+              {displayedText.slice(0, -2)}
+              <span className="animate-pulse-slow text-purple-500">{displayedText.slice(-2)}</span>
+          </div>
             
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-8">

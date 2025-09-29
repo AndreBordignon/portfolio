@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tailwindcss/utilities" layer(utilities);
 
 :root {
   --background: #ffffff;
@@ -23,4 +24,13 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+@layer utilities {
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+  .animate-pulse-slow {
+    animation: pulse-slow 2s ease-in-out infinite;
+  }
 }
