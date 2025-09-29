@@ -26,13 +26,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
+      <meta name="twitter:image" content="/twitter-image.png" />
+      <meta name="twitter:image:type" content="image/png" />
+      <meta name="twitter:image:width" content="1200" />
+      <meta name="twitter:image:height" content="630" />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <GoogleAnalytics gaId="G-EEKP219BC9" />
-        <Analytics />
+      {children}
+      <GoogleAnalytics gaId="G-EEKP219BC9" />
+      <Analytics />
       </body>
     </html>
   );
