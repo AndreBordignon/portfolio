@@ -252,7 +252,7 @@ const handleSubmit = async (e: any) => {
             AB
           </div>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            André Bordignon
+            André Bordignon<span className='animate-pulse-0-slow text-pink-500'>|</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8">
             Desenvolvedor Front-End | React | React Native
@@ -472,7 +472,7 @@ const handleSubmit = async (e: any) => {
                       onChange={(token) => handleCaptchaSubmission(token)}
                       onExpired={() => setIsVerified(false)}
                     />
-                  <button type='submit' disabled={!isVerified} onClick={(e) => handleSubmit(e)} className="w-full cursor-pointer px-8 py-3 mt-6 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold">
+                  <button type='submit' disabled={!isVerified} onClick={(e) => handleSubmit(e)} className="w-full cursor-pointer px-8 py-3 mt-6 bg-gradient-to-r  from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold">
                 
                   {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
               </button>
