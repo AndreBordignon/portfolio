@@ -2,12 +2,18 @@
 import Parser from "rss-parser";
 import type { NextApiRequest, NextApiResponse } from "next";
 
+
+interface Enclosure {
+  url: string;
+  type: string;
+  length: string;
+}
 export interface Post {
   title: string | undefined;
   link: string | undefined;
   date: string | undefined;
   snippet: string | undefined;
-  enclosure: { url: string; type: string; length: string } | undefined;
+  enclosure: Enclosure | undefined;
 }
 
 interface ErrorResponse {
@@ -31,9 +37,9 @@ export async function GET(req: Request): Promise<Response> {
           ? {
               url: item.enclosure.url ?? "",
               type: item.enclosure.type ?? "",
-              length: item.enclosure.length ?? "",
+              length: String(item.enclosure.length ?? "")
             }
-          : undefined,
+          : undefined
       }))
       .sort((a, b) => {
         if (!a.date) return 1;
