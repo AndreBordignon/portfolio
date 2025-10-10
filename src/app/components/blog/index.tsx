@@ -35,7 +35,7 @@ export default function Blog() {
             >
               <Image src={post.enclosure?.url || '/placeholder.png'} alt={post.title || 'Post Image'} width={340} height={180} className="rounded-lg mb-4 object-cover h-36 w-full"/> 
               <p
-                className="text-xl font-semibold text-white line-clamp- text-ellipsis"
+                className="text-xl font-semibold text-white line-clamp-2 text-ellipsis"
               >
                 {post.title}
               </p>
