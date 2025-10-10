@@ -16,7 +16,7 @@ export default function Blog() {
 
   return (
     <div className="w-full max-w-6xl mx-auto py-10 px-6 pt-24">
-      <h1 className="text-4xl mx-auto text-center font-bold mb-4">Blog</h1>
+      <h1 className="text-4xl mx-auto text-center font-bold mb-4">Substack</h1>
       <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-6"></div>
 
       {posts.length === 0 && <p>Carregando artigos...</p>}
