@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Analytics } from "@vercel/analytics/next"
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import HeaderNavigation from "./components/HeaderNavigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,11 +32,12 @@ export default function RootLayout({
       <meta name="twitter:image:width" content="1200" />
       <meta name="twitter:image:height" content="630" />
       <body
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      {children}
-      <GoogleAnalytics gaId="G-EEKP219BC9" />
-      <Analytics />
+        <HeaderNavigation />
+        {children}
+        <GoogleAnalytics gaId="G-EEKP219BC9" />
+        <Analytics />
       </body>
     </html>
   );
