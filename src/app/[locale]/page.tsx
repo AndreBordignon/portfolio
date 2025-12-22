@@ -8,7 +8,6 @@ import AboutSection from "../components/AboutSection";
 import ProjectsSection from "../components/ProjectsSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
-import Globe3D from "../components/Globe3D";
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState("home");
