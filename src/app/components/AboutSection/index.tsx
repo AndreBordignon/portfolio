@@ -77,12 +77,6 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          <h2 className="text-2xl font-medium mb-4 text-[#f97316]">
-            {t("about.title")}
-          </h2>
-        </div>
-
         <div>
           <article>
             <h3 className="text-2xl font-medium mb-4 text-[#f97316]">
@@ -129,4 +123,3 @@ export default function AboutSection() {
     </section>
   );
 }
-
