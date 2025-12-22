@@ -6,7 +6,7 @@ import whatsapp from "../../../../public/whatsapp.png";
 export default function WhatsappFloating() {
   return (
     <a
-      href="https://wa.me/5545998253744?text=Olá, André! Gostaria de saber mais sobre o seu trabalho."
+      href="https://wa.me/5545998253744?text=Olá, André! Gostaria de solicitar um orçamento para um projeto."
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-8 right-8 animate-float hover:scale-110 transition-transform duration-300"
