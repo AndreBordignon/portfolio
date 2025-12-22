@@ -1,7 +1,6 @@
 // pages/api/thecave.js
 import Parser from "rss-parser";
-import type { NextApiRequest, NextApiResponse } from "next";
-
+import { getTranslations } from "next-intl/server";
 
 interface Enclosure {
   url: string;
@@ -26,7 +25,7 @@ export async function GET(req: Request): Promise<Response> {
     const feed = await parser.parseURL(
       "https://andrebordignon.substack.com/feed"
     ); // link do feed da sua newsletter
-    
+
     const posts: Post[] = feed.items
       .map((item) => ({
         title: item.title,
@@ -37,9 +36,9 @@ export async function GET(req: Request): Promise<Response> {
           ? {
               url: item.enclosure.url ?? "",
               type: item.enclosure.type ?? "",
-              length: String(item.enclosure.length ?? "")
+              length: String(item.enclosure.length ?? ""),
             }
-          : undefined
+          : undefined,
       }))
       .sort((a, b) => {
         if (!a.date) return 1;
@@ -53,7 +52,9 @@ export async function GET(req: Request): Promise<Response> {
     });
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ error: "Erro ao carregar feed." }), {
+    // For API routes, we'll use a simple error message
+    // The client-side will handle the translation
+    return new Response(JSON.stringify({ error: "Error loading feed." }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });

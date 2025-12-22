@@ -1,0 +1,76 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso"
+  },
+  "navigation": {
+    "home": "Início",
+    "about": "Sobre",
+    "blog": "Blog",
+    "projects": "Projetos",
+    "contact": "Contato"
+  },
+  "hero": {
+    "title": "André Bordignon",
+    "subtitle": "Desenvolvedor Front-End | React | React Native",
+    "viewProjects": "Ver Projetos",
+    "contact": "Entre em Contato"
+  },
+  "about": {
+    "title": "Sobre Mim",
+    "journey": {
+      "description1": "Engenheiro de Software com 9+ anos de experiência em desenvolvimento web e mobile, especializado em React e React Native. Atuação em projetos de alta complexidade, com foco em performance, experiência do usuário e liderança técnica.",
+      "description2": "Especializo-me em desenvolvimento full-stack, com foco especial em React para frontend e Node.js para backend. Adoro trabalhar em projetos desafiadores que me permitam aprender e crescer continuamente."
+    },
+    "skills": {
+      "title": "Habilidades Técnicas",
+      "description": "Tecnologias e ferramentas que domino para criar soluções digitais de alta qualidade. Organizadas por categoria para facilitar a identificação de competências específicas."
+    }
+  },
+  "blog": {
+    "title": "Artigos Recentes",
+    "description": "Alguns dos meus pensamentos e reflexões sobre tecnologia, desenvolvimento e outras coisas que me interessam.",
+    "loading": "Carregando artigos...",
+    "noPosts": "Nenhum artigo encontrado no momento."
+  },
+  "projects": {
+    "title": "Meus Projetos",
+    "description": "Aqui estão alguns dos projetos que desenvolvi, demonstrando minhas habilidades em diferentes tecnologias e áreas.",
+    "code": "Código",
+    "demo": "Demo"
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "description": "Estou sempre interessado em novas oportunidades e projetos interessantes. Vamos conversar sobre como posso ajudar com seu próximo projeto!",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "sendMessage": "Envie uma Mensagem",
+    "form": {
+      "name": "Nome",
+      "namePlaceholder": "Seu nome",
+      "email": "Email",
+      "emailPlaceholder": "seu@email.com",
+      "subject": "Assunto",
+      "subjectPlaceholder": "Assunto da mensagem",
+      "message": "Mensagem",
+      "messagePlaceholder": "Sua mensagem...",
+      "sending": "Enviando...",
+      "send": "Enviar Mensagem",
+      "errors": {
+        "fillAll": "Por favor, preencha todos os campos.",
+        "invalidEmail": "Por favor, insira um email válido.",
+        "sendError": "Erro ao enviar mensagem. Por favor, tente novamente mais tarde."
+      },
+      "success": "Mensagem enviada com sucesso! Obrigado pelo contato, responderemos em breve."
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 André Bordignon. Todos os direitos reservados."
+  },
+  "api": {
+    "error": "Erro ao carregar feed."
+  }
+}
+
