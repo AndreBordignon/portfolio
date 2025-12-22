@@ -9,6 +9,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import WhatsappFloating from "../components/WhatsappFloating";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -209,6 +210,7 @@ export default async function LocaleLayout({
         </NextIntlClientProvider>
         <GoogleAnalytics gaId="G-EEKP219BC9" />
         <Analytics />
+        <WhatsappFloating />
       </body>
     </html>
   );
