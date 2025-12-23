@@ -1,12 +1,33 @@
 "use client";
 
-import { useState, useRef } from "react";
-import { Mail, Github, Linkedin } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Whatsapp,
+  MessageCircle,
+  LinkedinIcon,
+  ArrowRightIcon,
+  FileSpreadsheet,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import emailjs from "@emailjs/browser";
 import ReCAPTCHA from "react-google-recaptcha";
+import { ABTestTracker } from "@/app/tracking/ABTestTracker";
 
 export default function ContactSection() {
+  const [variant, setVariant] = useState<string>("A");
+
+  useEffect(() => {
+    // Lê o cookie no client
+    const cookie = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("ab-test-variant="))
+      ?.split("=")[1];
+
+    setVariant(cookie || "A");
+  }, []);
   const t = useTranslations();
   const [formData, setFormData] = useState({
     name: "",
@@ -122,81 +143,112 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="py-20 px-4 overflow-x-hidden">
+      <ABTestTracker variant={variant} />
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          <h2 className="text-2xl font-medium mb-4 text-[#f97316]">
-            {t("contact.title")}
-          </h2>
-          <p className="text-[#a8a29e] text-sm leading-relaxed max-w-[50%]">
-            {t("contact.description")}
-          </p>
-        </div>
-
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Side - Contact Info */}
-          <div className="space-y-6">
-            <div className="bg-[#292524] rounded-lg p-6 border border-[#44403c] hover:border-[#f97316] transition-all duration-200">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-[#f97316]/10 rounded-md border border-[#f97316]/20">
-                  <Mail className="text-[#f97316]" size={24} />
+          <div
+            className={`grid ls-1 sm:grid-cols-${
+              variant === "A" ? "2" : "1"
+            } gap-4 max-h-30`}
+          >
+            <div className="p-8 border border-none hover:text-[#f97316] transition-all duration-200 max-h-28">
+              <a
+                href="mailto:andre@andrebordignon.dev"
+                className="text-[#ffffff] hover:text-[#f97316] transition-colors"
+              >
+                <div className="flex bg-[#3a3532]/30 border-1 p-6 rounded-lg border-[#3a3532] hover:border-[#f97316] transition-colors items-center gap-4">
+                  <div className="">
+                    <Mail className="text-[#f97316]" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium mb-1 flex justify-between w-32">
+                      {t("contact.email")}
+                    </h3>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-1 text-[#e7e5e4]">
-                    {t("contact.email")}
-                  </h3>
-                  <a
-                    href="mailto:andre@andrebordignon.dev"
-                    className="text-[#a8a29e] hover:text-[#f97316] transition-colors"
-                  >
-                    andre@andrebordignon.dev
-                  </a>
-                </div>
-              </div>
+              </a>
             </div>
 
-            <div className="bg-[#292524] rounded-lg p-6 border border-[#44403c] hover:border-[#f97316] transition-all duration-200">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-[#f97316]/10 rounded-md border border-[#f97316]/20">
-                  <Github className="text-[#f97316]" size={24} />
+            <div className="p-8 border  border-none hover:text-[#f97316] transition-all duration-200 max-h-28">
+              <a
+                href="https://andrebordignon.substack.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#ffffff] hover:text-[#f97316] transition-colors"
+              >
+                <div className="flex bg-[#3a3532]/30 border-1 p-6 rounded-lg border-[#3a3532] hover:border-[#f97316] transition-colors items-center gap-4">
+                  <div className="">
+                    <FileSpreadsheet className="text-[#f97316]" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium mb-1 flex justify-between w-32">
+                      {t("contact.substack")}
+                    </h3>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-1 text-[#e7e5e4]">
-                    {t("contact.github")}
-                  </h3>
-                  <a
-                    href="https://github.com/AndreBordignon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#a8a29e] hover:text-[#f97316] transition-colors"
-                  >
-                    github.com/AndreBordignon
-                  </a>
-                </div>
-              </div>
+              </a>
             </div>
 
-            <div className="bg-[#292524] rounded-lg p-6 border border-[#44403c] hover:border-[#f97316] transition-all duration-200">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-[#f97316]/10 rounded-md border border-[#f97316]/20">
-                  <Linkedin className="text-[#f97316]" size={24} />
+            <div className="p-8 border  border-none hover:text-[#f97316] transition-all duration-200 max-h-28">
+              <a
+                href="https://github.com/AndreBordignon"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#ffffff] hover:text-[#f97316] transition-colors"
+              >
+                <div className="flex bg-[#3a3532]/30 border-1 p-6 rounded-lg border-[#3a3532] hover:border-[#f97316] transition-colors items-center gap-4">
+                  <div className="">
+                    <Github className="text-[#f97316]" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium mb-1 flex justify-between w-32">
+                      {t("contact.github")}
+                    </h3>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-lg font-medium mb-1 text-[#e7e5e4]">
-                    {t("contact.linkedin")}
-                  </h3>
-                  <a
-                    href="https://linkedin.com/in/andrebordignon/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#a8a29e] hover:text-[#f97316] transition-colors"
-                  >
-                    linkedin.com/in/andrebordignon/
-                  </a>
+              </a>
+            </div>
+
+            <div className="p-8 border  border-none hover:text-[#f97316] transition-all duration-200 max-h-28">
+              <a
+                href="https://wa.me/5545998253744?text=Olá, André! Gostaria de solicitar um orçamento para um projeto."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#ffffff] hover:text-[#f97316] transition-colors"
+              >
+                <div className="flex bg-[#3a3532]/30 border-1 p-6 rounded-lg border-[#3a3532] hover:border-[#f97316] transition-colors items-center gap-4">
+                  <div className="">
+                    <MessageCircle className="text-[#f97316]" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium mb-1 flex justify-between w-32">
+                      {t("contact.whatsapp")}
+                    </h3>
+                  </div>
                 </div>
-              </div>
+              </a>
+            </div>
+            <div className="p-8 border  border-none hover:text-[#f97316] transition-all duration-200 max-h-28">
+              <a
+                href="https://linkedin.com/in/andrebordignon/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#ffffff] hover:text-[#f97316] transition-colors"
+              >
+                <div className="flex bg-[#3a3532]/30 border-1 p-6 rounded-lg border-[#3a3532] hover:border-[#f97316] transition-colors items-center gap-4">
+                  <div className="">
+                    <LinkedinIcon className="text-[#f97316]" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium mb-1 flex justify-between w-32">
+                      {t("contact.linkedin")}
+                    </h3>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
-
           {/* Right Side - Contact Form */}
           <div className="bg-[#292524] rounded-lg p-4 sm:p-6 lg:p-8 border border-[#44403c] overflow-x-hidden">
             <h3 className="text-2xl font-medium mb-6 text-[#e7e5e4]">
@@ -281,7 +333,7 @@ export default function ContactSection() {
                   type="submit"
                   disabled={!isVerified}
                   onClick={(e) => handleSubmit(e)}
-                  className="w-full cursor-pointer px-8 py-3 mt-6 bg-[#f97316] rounded-md hover:bg-[#ea580c] transition-all duration-200 font-medium text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full cursor-pointer px-8 py-3 mt-6 bg-[#f97316] rounded-md hover:bg-[#ea580c] transition-all duration-200 max-h-28 font-medium text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting
                     ? t("contact.form.sending")
@@ -295,4 +347,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

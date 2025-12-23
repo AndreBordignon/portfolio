@@ -24,11 +24,7 @@ const HeaderNavigation: React.FC = () => {
   return (
     <nav className="fixed top-0 w-full bg-[#1c1917]/90 backdrop-blur-md border-b border-[#44403c] z-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center h-16">
-          <div className="text-lg sm:text-xl font-medium text-[#e7e5e4]">
-            André Bordignon
-          </div>
-
+        <div className="flex justify-center items-center h-16">
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-2">
             {[
