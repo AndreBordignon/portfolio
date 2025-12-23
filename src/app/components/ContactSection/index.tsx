@@ -5,7 +5,6 @@ import {
   Mail,
   Github,
   Linkedin,
-  Whatsapp,
   MessageCircle,
   LinkedinIcon,
   ArrowRightIcon,
