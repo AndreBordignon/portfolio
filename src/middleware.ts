@@ -2,27 +2,28 @@ import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 import { NextRequest, NextResponse } from "next/server";
 
-export default createMiddleware(routing);
+// Cria o middleware de internacionalização
+const intlMiddleware = createMiddleware(routing);
 
 export function middleware(req: NextRequest) {
-  // Define qual variante mostrar (50% cada)
-  const bucket = Math.random() < 0.5 ? "A" : "B";
+  // 1. Executa o middleware de internacionalização primeiro
+  const intlResponse = intlMiddleware(req);
 
-  // Pega ou cria o cookie
+  // 2. Adiciona a lógica do A/B test
+  const bucket = Math.random() < 0.5 ? "A" : "B";
   const cookie = req.cookies.get("ab-test-variant");
-  const response = NextResponse.next();
 
   // Se não tem cookie, define um
   if (!cookie) {
-    response.cookies.set("ab-test-variant", bucket, {
+    intlResponse.cookies.set("ab-test-variant", bucket, {
       maxAge: 60 * 60 * 24 * 30, // 30 dias
     });
   }
 
   // Adiciona header para usar no componente
-  response.headers.set("x-ab-test-variant", cookie?.value || bucket);
+  intlResponse.headers.set("x-ab-test-variant", cookie?.value || bucket);
 
-  return response;
+  return intlResponse;
 }
 
 export const config = {
