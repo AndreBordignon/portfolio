@@ -10,6 +10,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import WhatsappFloating from "../components/WhatsappFloating";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,8 +34,8 @@ export async function generateMetadata({
   const isPtBR = locale === "pt-BR";
 
   const title = isPtBR
-    ? "André Bordignon - Desenvolvedor Front-End | React | React Native | Portfólio"
-    : "André Bordignon - Front-End Developer | React | React Native | Portfolio";
+    ? "André Bordignon - Desenvolvedor Front-End | React | React Native"
+    : "André Bordignon - Front-End Developer | React | React Native";
 
   const description = isPtBR
     ? "Desenvolvedor Front-End especializado em React, React Native e Node.js com 9+ anos de experiência. Criando experiências digitais incríveis com tecnologias modernas. Veja meus projetos e entre em contato!"
@@ -154,13 +155,10 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
   const messages = await getMessages();
 
   const isPtBR = locale === "pt-BR";
 
-  // Structured Data (JSON-LD) for SEO
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -210,6 +208,7 @@ export default async function LocaleLayout({
         </NextIntlClientProvider>
         <GoogleAnalytics gaId="G-EEKP219BC9" />
         <Analytics />
+        <SpeedInsights />
         <WhatsappFloating />
       </body>
     </html>
