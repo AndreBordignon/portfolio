@@ -7,12 +7,18 @@
   "navigation": {
     "home": "Início",
     "about": "Sobre",
+    "services": "Serviços",
     "projects": "Trabalhos",
+    "cases": "Cases",
     "craft": "Ofício",
     "contact": "Contato"
   },
+  "home": {
+    "seoTitle": "Programador freelance — André Bordignon | React e Next.js",
+    "seoDescription": "Programador freelance com 9 anos de experiência em React, Next.js e React Native. Sites, SaaS e aplicativos sob medida, de Brasília para todo o Brasil."
+  },
   "hero": {
-    "eyebrow": "Full-stack · React & React Native · Brasília, BR",
+    "eyebrow": "Programador freelance · React & Next.js · Brasília, BR",
     "lead": "Nove anos construindo produto web e mobile — do primeiro commit à cobrança recorrente. Interface que aguenta usuário real e a parte que ninguém quer fazer: performance, billing e deploy.",
     "viewProjects": "Ver trabalhos",
     "contact": "Entre em contato",
@@ -36,17 +42,24 @@
     "counter": "projetos selecionados",
     "decision": "Decisão técnica",
     "open": "Abrir",
+    "readCase": "Ler o case",
+    "allCases": "Ver todos os cases",
     "moreLabel": "Tem mais",
     "more": "Boilerplates, experimentos e projetos que nunca viraram case — tudo aberto no GitHub.",
     "role": "Papel"
   },
+  "servicesTeaser": {
+    "index": "03 — Serviços",
+    "title": "Como eu posso te ajudar.",
+    "cta": "Ver o serviço"
+  },
   "craft": {
-    "index": "03 — Ofício",
+    "index": "04 — Ofício",
     "title": "As ferramentas importam menos que saber quando não usá-las.",
     "description": "Stack de produção, não lista de tutorial. O que está aqui é o que eu já quebrei, consertei e mantive rodando."
   },
   "contactSection": {
-    "index": "04 — Contato",
+    "index": "05 — Contato",
     "title": "Vamos construir algo.",
     "description": "Aberto a projeto freelance, produto próprio e conversa técnica sem compromisso. Respondo rápido no WhatsApp e no e-mail."
   },
@@ -76,11 +89,86 @@
       "success": "Mensagem enviada. Obrigado pelo contato — respondo em breve."
     }
   },
+  "servicesPage": {
+    "seoTitle": "Serviços — desenvolvimento freelance de sites, SaaS e apps",
+    "seoDescription": "Desenvolvimento freelance sob medida: sites e landing pages de alto padrão, SaaS com cobrança recorrente e aplicativos React Native. De Brasília para todo o Brasil.",
+    "home": "Início",
+    "breadcrumb": "Serviços",
+    "eyebrow": "Serviços",
+    "title": "O que eu construo, e para quem.",
+    "lede": "Trabalho sozinho e assumo o problema inteiro: direção de arte, arquitetura, código e deploy. Poucos projetos por vez, escopo escrito antes de começar, e um não honesto quando eu não caibo no prazo.",
+    "cta": "Ver o serviço"
+  },
+  "servicePage": {
+    "home": "Início",
+    "breadcrumb": "Serviços",
+    "eyebrow": "Serviço",
+    "deliverables": "O que entra na entrega",
+    "stack": "Stack",
+    "proof": "A prova está nos projetos.",
+    "faqTitle": "Perguntas que sempre aparecem"
+  },
+  "casesPage": {
+    "seoTitle": "Cases — projetos em produção e as decisões por trás deles",
+    "seoDescription": "Sete projetos reais, do SaaS de condomínios ao jogo que transforma candles de Bitcoin em terreno. Cada case com o problema, a abordagem e o que aconteceu depois.",
+    "home": "Início",
+    "breadcrumb": "Cases",
+    "eyebrow": "Cases",
+    "title": "Projetos reais, com a decisão técnica exposta.",
+    "lede": "Cada case aqui conta o problema de verdade, a escolha que definiu o resultado e o que só ficou claro depois do deploy — incluindo o que deu errado.",
+    "open": "Abrir"
+  },
+  "casePage": {
+    "home": "Início",
+    "breadcrumb": "Cases",
+    "challenge": "O problema",
+    "approach": "A abordagem",
+    "outcome": "O que aconteceu",
+    "facts": "Fatos do projeto",
+    "stack": "Stack",
+    "links": "Links",
+    "next": "Próximo case"
+  },
+  "aboutPage": {
+    "seoTitle": "Sobre André Bordignon — programador freelance em Brasília",
+    "seoDescription": "Nove anos construindo web e mobile: quem sou, onde atuo, como trabalho e com que stack. Ficha de fatos e disciplinas, sem enrolação.",
+    "home": "Início",
+    "breadcrumb": "Sobre",
+    "eyebrow": "Sobre",
+    "title": "Quem está do outro lado do código.",
+    "story1": "Comecei a programar profissionalmente em 2017 e nunca saí de perto do produto. Passei por time de agência, produto interno e cliente direto, e a conclusão foi sempre a mesma: o que separa software bom de software caro é quantas decisões erradas você consegue evitar antes da primeira linha.",
+    "story2": "Hoje divido o tempo entre trabalho de time — modernizando aplicativos React Native em produção no varejo — e os meus próprios produtos, onde eu sou o produto, o design, o código e o suporte. Essa segunda metade é o que me ensinou a pensar em custo de operação, cobrança e churn, e não só em componente.",
+    "story3": "Sou baseado em Brasília e atendo todo o Brasil remotamente. Trabalho com escopo escrito antes de começar, preview a cada entrega e decisão técnica registrada — porque daqui a um ano alguém vai perguntar por quê, e eu quero ter a resposta.",
+    "pullquote": "Não terceirizo. Você fala com quem escreve o código.",
+    "factsTitle": "Ficha de fatos",
+    "craftTitle": "As disciplinas que eu realmente exerço.",
+    "facts": {
+      "name": "Nome",
+      "role": "Função",
+      "location": "Localização",
+      "serves": "Atendimento",
+      "servesValue": "Todo o Brasil, remoto",
+      "since": "Atuando desde",
+      "experience": "Experiência",
+      "experienceValue": "{years} anos em web e mobile",
+      "stack": "Stack principal",
+      "languages": "Idiomas",
+      "languagesValue": "Português (nativo), Inglês",
+      "email": "E-mail"
+    }
+  },
+  "cta": {
+    "title": "Me conta o que você quer construir.",
+    "body": "Uma conversa de 30 minutos sobre o problema costuma resolver mais do que três trocas de e-mail sobre tecnologia. Se não for pra mim, eu digo na hora.",
+    "primary": "Enviar mensagem",
+    "secondary": "Chamar no WhatsApp"
+  },
   "footer": {
     "builtWith": "Next.js · GSAP · React Three Fiber · Vercel",
     "backToTop": "Voltar ao topo",
     "rights": "Todos os direitos reservados.",
-    "copyright": "© 2026 André Bordignon. Todos os direitos reservados."
+    "copyright": "© 2026 André Bordignon. Todos os direitos reservados.",
+    "nav": "Navegação"
   },
   "api": {
     "error": "Erro ao carregar feed."

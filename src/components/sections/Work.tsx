@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "@/i18n/routing";
 import { projects, type Locale } from "@/data/projects";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -163,9 +164,24 @@ export default function Work() {
                   ))}
                 </div>
 
-                {p.links.length > 0 && (
-                  <div className="relative mt-9 flex flex-wrap gap-6">
-                    {p.links.map((l) => (
+                <div className="relative mt-9 flex flex-wrap items-center gap-6">
+                  {/* O case é a página com conteúdo de verdade — o link interno
+                      que leva o leitor (e o crawler) do painel para o texto. */}
+                  <Link
+                    href={{ pathname: "/cases/[slug]", params: { slug: p.slug } }}
+                    data-cursor={t("readCase")}
+                    className="group inline-flex items-center gap-2 text-sm font-medium text-ember transition-colors hover:text-ember-soft"
+                  >
+                    <span className="border-b border-ember/40 pb-1 transition-colors group-hover:border-ember-soft">
+                      {t("readCase")}
+                    </span>
+                    <ArrowUpRight
+                      size={16}
+                      className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    />
+                  </Link>
+
+                  {p.links.map((l) => (
                       <a
                         key={l.href}
                         href={l.href}
@@ -182,9 +198,8 @@ export default function Work() {
                           className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                         />
                       </a>
-                    ))}
-                  </div>
-                )}
+                  ))}
+                </div>
               </div>
             </article>
           ))}
@@ -194,15 +209,25 @@ export default function Work() {
             <div className="work-panel-inner">
               <p className="type-label">{t("moreLabel")}</p>
               <p className="type-h3 mt-6 max-w-md text-balance">{t("more")}</p>
-              <a
-                href="https://github.com/AndreBordignon"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-ember hover:text-ember-soft"
-              >
-                github.com/AndreBordignon
-                <ArrowUpRight size={16} />
-              </a>
+
+              <div className="mt-8 flex flex-col items-start gap-4">
+                <Link
+                  href="/cases"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-ember hover:text-ember-soft"
+                >
+                  {t("allCases")}
+                  <ArrowUpRight size={16} />
+                </Link>
+                <a
+                  href="https://github.com/AndreBordignon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-ember"
+                >
+                  github.com/AndreBordignon
+                  <ArrowUpRight size={16} />
+                </a>
+              </div>
             </div>
           </div>
         </div>

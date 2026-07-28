@@ -1,21 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/routing";
+import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { scrollToSection } from "@/components/providers/SmoothScroll";
+import { alternateSlug } from "@/lib/localizedSlug";
+import type { Locale } from "@/data/projects";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-const links = [
-  { id: "sobre", key: "about" },
-  { id: "trabalhos", key: "projects" },
-  { id: "oficio", key: "craft" },
-  { id: "contato", key: "contact" },
-] as const;
 
 /** Relógio de Brasília — o site diz de onde ele fala. */
 function LocalTime() {
@@ -36,15 +32,18 @@ function LocalTime() {
   }, []);
 
   if (!time) return null;
-  return <span className="type-label hidden lg:block">Brasília · {time}</span>;
+  return <span className="type-label hidden xl:block">Brasília · {time}</span>;
 }
 
 export default function Header() {
   const root = useRef<HTMLElement>(null);
   const t = useTranslations("navigation");
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
+  const params = useParams();
+
+  const isHome = pathname === "/";
 
   useGSAP(
     () => {
@@ -66,41 +65,79 @@ export default function Header() {
     { scope: root },
   );
 
-  const otherLocale = locale === "pt-BR" ? "en" : "pt-BR";
+  const otherLocale: Locale = locale === "pt-BR" ? "en" : "pt-BR";
+
+  function switchLocale() {
+    const slug = typeof params?.slug === "string" ? params.slug : undefined;
+
+    router.replace(
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      {
+        pathname,
+        // Slug de serviço é traduzido: sem o mapa, a troca de idioma dá 404.
+        ...(slug
+          ? { params: { slug: alternateSlug(slug, locale, otherLocale) } }
+          : {}),
+      } as any,
+      { locale: otherLocale },
+    );
+  }
 
   return (
     <header
       ref={root}
       className="fixed inset-x-0 top-0 z-50 transition-colors duration-300 [&.is-solid]:border-b [&.is-solid]:border-[color:var(--line)] [&.is-solid]:bg-ink/70 [&.is-solid]:backdrop-blur-xl"
     >
-      <nav className="mx-auto flex w-full max-w-[92rem] items-center justify-between gap-6 px-6 py-5 md:px-10">
-        <button
-          onClick={() => scrollToSection("inicio")}
-          className="group flex items-center gap-3"
-          aria-label="André Bordignon"
-        >
+      <nav
+        aria-label={t("home")}
+        className="mx-auto flex w-full max-w-[92rem] items-center justify-between gap-6 px-6 py-5 md:px-10"
+      >
+        <Link href="/" className="group flex items-center gap-3" aria-label="André Bordignon">
           <span className="inline-block h-2 w-2 rounded-full bg-ember transition-transform group-hover:scale-150" />
           <span className="font-mono text-xs tracking-[0.2em] text-bone">A / B</span>
-        </button>
+        </Link>
 
         <div className="flex items-center gap-5 md:gap-8">
           <LocalTime />
 
           <ul className="hidden items-center gap-7 md:flex">
-            {links.map((l) => (
-              <li key={l.id}>
+            <li>
+              <Link href="/servicos" className="type-label transition-colors hover:text-ember">
+                {t("services")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/cases" className="type-label transition-colors hover:text-ember">
+                {t("cases")}
+              </Link>
+            </li>
+            <li>
+              <Link href="/sobre" className="type-label transition-colors hover:text-ember">
+                {t("about")}
+              </Link>
+            </li>
+            <li>
+              {/* Na home o contato é âncora (scroll suave); fora dela, link. */}
+              {isHome ? (
                 <button
-                  onClick={() => scrollToSection(l.id)}
+                  onClick={() => scrollToSection("contato")}
                   className="type-label transition-colors hover:text-ember"
                 >
-                  {t(l.key)}
+                  {t("contact")}
                 </button>
-              </li>
-            ))}
+              ) : (
+                <Link
+                  href={{ pathname: "/", hash: "contato" }}
+                  className="type-label transition-colors hover:text-ember"
+                >
+                  {t("contact")}
+                </Link>
+              )}
+            </li>
           </ul>
 
           <button
-            onClick={() => router.replace(pathname, { locale: otherLocale })}
+            onClick={switchLocale}
             className="type-label border border-[color:var(--line)] px-3 py-1.5 transition-colors hover:border-ember hover:text-ember"
             aria-label={`Switch to ${otherLocale}`}
           >
