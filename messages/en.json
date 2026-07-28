@@ -7,49 +7,56 @@
   "navigation": {
     "home": "Home",
     "about": "About",
-    "blog": "Blog",
-    "projects": "Projects",
+    "projects": "Work",
+    "craft": "Craft",
     "contact": "Contact"
   },
   "hero": {
-    "title": "André Bordignon",
-    "subtitle": "Front-End Developer | React | React Native",
-    "viewProjects": "View Projects",
-    "contact": "Get in Touch"
+    "eyebrow": "Full-stack · React & React Native · Brasília, BR",
+    "lead": "Nine years building web and mobile products — from first commit to recurring revenue. Interfaces that hold up under real users, plus the part nobody wants: performance, billing and deploys.",
+    "viewProjects": "See the work",
+    "contact": "Get in touch",
+    "beat2Label": "What you're looking at",
+    "beat2": "A Bitcoin candlestick chart drawn in WebGL, one particle at a time. Same kind of data that becomes game terrain in Candle Cross — because pretty data is worth nothing until it becomes a product.",
+    "scrollCue": "Scroll to begin"
   },
-  "about": {
-    "title": "About Me",
-    "journey": {
-      "description1": "Software Engineer with 9+ years of experience in web and mobile development, specialized in React and React Native. Working on high-complexity projects, focusing on performance, user experience and technical leadership.",
-      "description2": "I specialize in full-stack development, with a special focus on React for frontend and Node.js for backend. I love working on challenging projects that allow me to learn and grow continuously."
-    },
-    "skills": {
-      "title": "Technical Skills",
-      "description": "Technologies and tools I master to create high-quality digital solutions. Organized by category for easy identification of specific competencies."
-    }
+  "manifesto": {
+    "index": "01 — About",
+    "statement": "I don't ship pretty screens. I ship products that survive their second month in production.",
+    "paragraph1": "I've been a software engineer for over nine years, specialized in React and React Native. I work inside teams — modernizing production apps used daily in retail — and alone, from scratch, on my own products.",
+    "paragraph2": "In practice: I pick the payment integration thinking about Pix and Brazilian invoicing, I hunt 1,472ms of INP down to the guilty listener, I upgrade dependencies in waves that revert with a single command. And I write the decision down, because a year from now someone will ask why.",
+    "pullquote": "Good software is the software that still makes sense the day you have to change it.",
+    "availability": "Available for projects"
   },
-  "blog": {
-    "title": "Recent Articles",
-    "description": "Some of my thoughts and reflections on technology, development and other things that interest me.",
-    "loading": "Loading articles...",
-    "noPosts": "No articles found at the moment."
+  "work": {
+    "index": "02 — Work",
+    "hint": "Scroll to travel →",
+    "title": "What I've built — and why it turned out this way.",
+    "description": "My own products, client work and code running in production right now. Each with the technical decision that shaped the outcome.",
+    "counter": "selected projects",
+    "decision": "Technical decision",
+    "open": "Open",
+    "moreLabel": "There's more",
+    "more": "Boilerplates, experiments and projects that never became case studies — all open on GitHub.",
+    "role": "Role"
   },
-  "projects": {
-    "title": "My Projects",
-    "description": "Here are some of the projects I've developed, showcasing my skills in different technologies and areas.",
-    "code": "Code",
-    "demo": "Demo"
+  "craft": {
+    "index": "03 — Craft",
+    "title": "Tools matter less than knowing when not to use them.",
+    "description": "Production stack, not a tutorial list. What's here is what I've broken, fixed and kept running."
+  },
+  "contactSection": {
+    "index": "04 — Contact",
+    "title": "Let's build something.",
+    "description": "Open to freelance projects, product work and a technical conversation with no strings attached. Fastest replies on WhatsApp and email."
   },
   "contact": {
-    "title": "Get in Touch",
-    "description": "I'm always interested in new opportunities and interesting projects. Let's talk about how I can help with your next project!",
     "email": "Email",
     "github": "GitHub",
     "whatsapp": "WhatsApp",
     "substack": "Substack",
-
     "linkedin": "LinkedIn",
-    "sendMessage": "Send a Message",
+    "sendMessage": "Send a message",
     "form": {
       "name": "Name",
       "namePlaceholder": "Your name",
@@ -58,22 +65,24 @@
       "subject": "Subject",
       "subjectPlaceholder": "Message subject",
       "message": "Message",
-      "messagePlaceholder": "Your message...",
+      "messagePlaceholder": "Tell me what you want to build...",
       "sending": "Sending...",
-      "send": "Send Message",
+      "send": "Send message",
       "errors": {
         "fillAll": "Please fill in all fields.",
         "invalidEmail": "Please enter a valid email.",
         "sendError": "Error sending message. Please try again later."
       },
-      "success": "Message sent successfully! Thank you for contacting us, we will respond soon."
+      "success": "Message sent. Thanks for reaching out — I'll reply shortly."
     }
   },
   "footer": {
-    "copyright": "© 2025 André Bordignon. All rights reserved."
+    "builtWith": "Next.js · GSAP · React Three Fiber · Vercel",
+    "backToTop": "Back to top",
+    "rights": "All rights reserved.",
+    "copyright": "© 2026 André Bordignon. All rights reserved."
   },
   "api": {
     "error": "Error loading feed."
   }
 }
-
