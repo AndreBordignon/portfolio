@@ -29,6 +29,15 @@ export function scrollToSection(id: string) {
   }
 }
 
+/** Volta ao topo — funciona em qualquer página, com ou sem âncora `#inicio`. */
+export function scrollToTop() {
+  if (lenisInstance) {
+    lenisInstance.scrollTo(0, { duration: 1.2 });
+  } else {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+}
+
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Quem pediu menos movimento fica com o scroll nativo do browser.

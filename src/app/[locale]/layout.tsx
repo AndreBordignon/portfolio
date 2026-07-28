@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
-import Script from "next/script";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -15,6 +14,10 @@ import Preloader from "@/components/chrome/Preloader";
 import Header from "@/components/chrome/Header";
 import Footer from "@/components/chrome/Footer";
 import ContactDock from "@/components/chrome/ContactDock";
+import JsonLd from "@/components/seo/JsonLd";
+import { graph, personSchema, practiceSchema, websiteSchema } from "@/lib/jsonld";
+import { baseUrl, siteName } from "@/lib/site";
+import type { Locale } from "@/data/projects";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,9 +39,14 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_BASE_URL || "https://andrebordignon.dev";
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
+/**
+ * Só o que é comum a todas as páginas. Título, descrição, canonical e hreflang
+ * são responsabilidade de cada `page.tsx`, via `pageMetadata()`.
+ */
 export async function generateMetadata({
   params,
 }: {
@@ -47,97 +55,16 @@ export async function generateMetadata({
   const { locale } = await params;
   const isPtBR = locale === "pt-BR";
 
-  const title = isPtBR
-    ? "André Bordignon - Desenvolvedor Front-End | React | React Native"
-    : "André Bordignon - Front-End Developer | React | React Native";
-
-  const description = isPtBR
-    ? "Desenvolvedor Front-End especializado em React, React Native e Node.js com 9+ anos de experiência. Criando experiências digitais incríveis com tecnologias modernas. Veja meus projetos e entre em contato!"
-    : "Front-End Developer specialized in React, React Native and Node.js with 9+ years of experience. Creating amazing digital experiences with modern technologies. Check out my projects and get in touch!";
-
-  const keywords = isPtBR
-    ? [
-        "desenvolvedor front-end",
-        "desenvolvedor react",
-        "desenvolvedor react native",
-        "desenvolvedor javascript",
-        "desenvolvedor typescript",
-        "desenvolvedor node.js",
-        "desenvolvedor web",
-        "desenvolvedor mobile",
-        "portfólio desenvolvedor",
-        "freelancer desenvolvedor",
-        "react developer",
-        "react native developer",
-        "frontend developer",
-        "web developer",
-        "mobile developer",
-        "javascript developer",
-        "typescript developer",
-        "next.js",
-        "tailwind css",
-        "redux",
-        "graphql",
-      ]
-    : [
-        "front-end developer",
-        "react developer",
-        "react native developer",
-        "javascript developer",
-        "typescript developer",
-        "node.js developer",
-        "web developer",
-        "mobile developer",
-        "developer portfolio",
-        "freelance developer",
-        "next.js",
-        "tailwind css",
-        "redux",
-        "graphql",
-        "frontend developer",
-      ];
-
-  const canonicalUrl = `${baseUrl}/${locale === "pt-BR" ? "" : locale}`;
-
   return {
-    title,
-    description,
-    keywords,
-    authors: [{ name: "André Bordignon" }],
+    metadataBase: new URL(baseUrl),
+    title: {
+      default: siteName[locale as Locale],
+      // As páginas passam só o próprio nome; a marca entra aqui.
+      template: `%s | ${isPtBR ? "André Bordignon" : "André Bordignon"}`,
+    },
+    authors: [{ name: "André Bordignon", url: baseUrl }],
     creator: "André Bordignon",
     publisher: "André Bordignon",
-    metadataBase: new URL(baseUrl),
-    alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        "pt-BR": `${baseUrl}/pt-BR`,
-        en: `${baseUrl}/en`,
-        "x-default": baseUrl,
-      },
-    },
-    openGraph: {
-      type: "website",
-      locale: locale === "pt-BR" ? "pt_BR" : "en_US",
-      url: canonicalUrl,
-      title,
-      description,
-      siteName: "André Bordignon - Portfólio",
-      images: [
-        {
-          url: `${baseUrl}/andre-bordignon.jpg`,
-          width: 1200,
-          height: 630,
-          alt: "André Bordignon - Desenvolvedor Front-End",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      creator: "@andrebordignon",
-      images: [`${baseUrl}/andre-bordignon.jpg`],
-    },
     robots: {
       index: true,
       follow: true,
@@ -164,57 +91,26 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound();
   }
 
   const messages = await getMessages();
-
+  const typedLocale = locale as Locale;
   const isPtBR = locale === "pt-BR";
-
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "André Bordignon",
-    jobTitle: isPtBR ? "Desenvolvedor Front-End" : "Front-End Developer",
-    description: isPtBR
-      ? "Desenvolvedor Front-End especializado em React, React Native e Node.js com 9+ anos de experiência"
-      : "Front-End Developer specialized in React, React Native and Node.js with 9+ years of experience",
-    url: `${baseUrl}/${locale === "pt-BR" ? "" : locale}`,
-    image: `${baseUrl}/andre-bordignon.jpg`,
-    sameAs: [
-      "https://github.com/AndreBordignon",
-      "https://linkedin.com/in/andrebordignon/",
-    ],
-    email: "andre@andrebordignon.dev",
-    knowsAbout: [
-      "React",
-      "React Native",
-      "JavaScript",
-      "TypeScript",
-      "Node.js",
-      "Next.js",
-      "Front-End Development",
-      "Web Development",
-      "Mobile Development",
-    ],
-    alumniOf: {
-      "@type": "Organization",
-      name: isPtBR ? "Desenvolvedor de Software" : "Software Developer",
-    },
-  };
 
   return (
     <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} grain vignette antialiased`}
       >
-        <Script
-          id="structured-data"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-          strategy="beforeInteractive"
+        {/* Entidades do site. Cada página acrescenta o próprio bloco. */}
+        <JsonLd
+          data={graph(
+            personSchema(typedLocale),
+            practiceSchema(typedLocale),
+            websiteSchema(typedLocale),
+          )}
         />
 
         <a

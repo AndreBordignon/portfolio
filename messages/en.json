@@ -7,12 +7,18 @@
   "navigation": {
     "home": "Home",
     "about": "About",
+    "services": "Services",
     "projects": "Work",
+    "cases": "Cases",
     "craft": "Craft",
     "contact": "Contact"
   },
+  "home": {
+    "seoTitle": "Freelance developer — André Bordignon | React & Next.js",
+    "seoDescription": "Freelance developer with 9 years of experience in React, Next.js and React Native. Custom websites, SaaS and mobile apps, from Brasília to all of Brazil."
+  },
   "hero": {
-    "eyebrow": "Full-stack · React & React Native · Brasília, BR",
+    "eyebrow": "Freelance developer · React & Next.js · Brasília, BR",
     "lead": "Nine years building web and mobile products — from first commit to recurring revenue. Interfaces that hold up under real users, plus the part nobody wants: performance, billing and deploys.",
     "viewProjects": "See the work",
     "contact": "Get in touch",
@@ -36,17 +42,24 @@
     "counter": "selected projects",
     "decision": "Technical decision",
     "open": "Open",
+    "readCase": "Read the case",
+    "allCases": "See all cases",
     "moreLabel": "There's more",
     "more": "Boilerplates, experiments and projects that never became case studies — all open on GitHub.",
     "role": "Role"
   },
+  "servicesTeaser": {
+    "index": "03 — Services",
+    "title": "How I can help.",
+    "cta": "See the service"
+  },
   "craft": {
-    "index": "03 — Craft",
+    "index": "04 — Craft",
     "title": "Tools matter less than knowing when not to use them.",
     "description": "Production stack, not a tutorial list. What's here is what I've broken, fixed and kept running."
   },
   "contactSection": {
-    "index": "04 — Contact",
+    "index": "05 — Contact",
     "title": "Let's build something.",
     "description": "Open to freelance projects, product work and a technical conversation with no strings attached. Fastest replies on WhatsApp and email."
   },
@@ -76,11 +89,86 @@
       "success": "Message sent. Thanks for reaching out — I'll reply shortly."
     }
   },
+  "servicesPage": {
+    "seoTitle": "Services — freelance development of websites, SaaS and apps",
+    "seoDescription": "Custom freelance development: high-end websites and landing pages, SaaS with recurring billing, and React Native apps. From Brasília to all of Brazil.",
+    "home": "Home",
+    "breadcrumb": "Services",
+    "eyebrow": "Services",
+    "title": "What I build, and who for.",
+    "lede": "I work solo and own the whole problem: art direction, architecture, code and deploy. Few projects at a time, a written scope before we start, and an honest no when I don't fit the deadline.",
+    "cta": "See the service"
+  },
+  "servicePage": {
+    "home": "Home",
+    "breadcrumb": "Services",
+    "eyebrow": "Service",
+    "deliverables": "What the delivery includes",
+    "stack": "Stack",
+    "proof": "The proof is in the projects.",
+    "faqTitle": "Questions that always come up"
+  },
+  "casesPage": {
+    "seoTitle": "Cases — production projects and the decisions behind them",
+    "seoDescription": "Seven real projects, from a condo management SaaS to a game that turns Bitcoin candles into terrain. Each case with the problem, the approach and what happened after.",
+    "home": "Home",
+    "breadcrumb": "Cases",
+    "eyebrow": "Cases",
+    "title": "Real projects, with the technical decision in plain sight.",
+    "lede": "Each case here tells the actual problem, the choice that shaped the outcome, and what only became clear after deploy — including what went wrong.",
+    "open": "Open"
+  },
+  "casePage": {
+    "home": "Home",
+    "breadcrumb": "Cases",
+    "challenge": "The problem",
+    "approach": "The approach",
+    "outcome": "What happened",
+    "facts": "Project facts",
+    "stack": "Stack",
+    "links": "Links",
+    "next": "Next case"
+  },
+  "aboutPage": {
+    "seoTitle": "About André Bordignon — freelance developer in Brazil",
+    "seoDescription": "Nine years building web and mobile: who I am, where I work, how I work and with what stack. A fact sheet and the disciplines, no fluff.",
+    "home": "Home",
+    "breadcrumb": "About",
+    "eyebrow": "About",
+    "title": "Who's on the other side of the code.",
+    "story1": "I started programming professionally in 2017 and never drifted far from the product. I've worked in agency teams, on internal products and directly with clients, and the conclusion was always the same: what separates good software from expensive software is how many wrong decisions you avoid before the first line.",
+    "story2": "Today I split my time between team work — modernizing production React Native apps in retail — and my own products, where I'm the product, the design, the code and the support. That second half is what taught me to think about operating cost, billing and churn, not just components.",
+    "story3": "I'm based in Brasília and work remotely across Brazil. I work with a written scope before starting, a preview on every delivery, and technical decisions written down — because a year from now someone will ask why, and I want to have the answer.",
+    "pullquote": "I don't subcontract. You talk to the person writing the code.",
+    "factsTitle": "Fact sheet",
+    "craftTitle": "The disciplines I actually practice.",
+    "facts": {
+      "name": "Name",
+      "role": "Role",
+      "location": "Location",
+      "serves": "Serves",
+      "servesValue": "All of Brazil, remote",
+      "since": "Working since",
+      "experience": "Experience",
+      "experienceValue": "{years} years in web and mobile",
+      "stack": "Core stack",
+      "languages": "Languages",
+      "languagesValue": "Portuguese (native), English",
+      "email": "Email"
+    }
+  },
+  "cta": {
+    "title": "Tell me what you want to build.",
+    "body": "A 30-minute conversation about the problem usually settles more than three email threads about technology. If it isn't for me, I'll say so right away.",
+    "primary": "Send a message",
+    "secondary": "Message on WhatsApp"
+  },
   "footer": {
     "builtWith": "Next.js · GSAP · React Three Fiber · Vercel",
     "backToTop": "Back to top",
     "rights": "All rights reserved.",
-    "copyright": "© 2026 André Bordignon. All rights reserved."
+    "copyright": "© 2026 André Bordignon. All rights reserved.",
+    "nav": "Navigation"
   },
   "api": {
     "error": "Error loading feed."
