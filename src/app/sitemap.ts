@@ -3,37 +3,23 @@ import { routing } from '@/i18n/routing'
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://andrebordignon.dev'
 
+const localeUrl = (locale: string) =>
+  locale === routing.defaultLocale ? baseUrl : `${baseUrl}/${locale}`
+
+/**
+ * O portfólio é uma página só — as seções são âncoras, não rotas.
+ * O sitemap lista apenas as raízes por idioma.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ['', 'about', 'projects', 'contact', 'blog']
-  
-  const sitemapEntries: MetadataRoute.Sitemap = []
-
-  // Generate entries for each locale
-  routing.locales.forEach((locale) => {
-    routes.forEach((route) => {
-      const url = locale === routing.defaultLocale 
-        ? `${baseUrl}/${route || ''}` 
-        : `${baseUrl}/${locale}/${route || ''}`
-      
-      sitemapEntries.push({
-        url: url.replace(/\/$/, '') || baseUrl,
-        lastModified: new Date(),
-        changeFrequency: route === '' ? 'weekly' : 'monthly',
-        priority: route === '' ? 1 : 0.8,
-        alternates: {
-          languages: Object.fromEntries(
-            routing.locales.map((loc) => [
-              loc,
-              loc === routing.defaultLocale
-                ? `${baseUrl}/${route || ''}`
-                : `${baseUrl}/${loc}/${route || ''}`
-            ])
-          ),
-        },
-      })
-    })
-  })
-
-  return sitemapEntries
+  return routing.locales.map((locale) => ({
+    url: localeUrl(locale),
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: locale === routing.defaultLocale ? 1 : 0.8,
+    alternates: {
+      languages: Object.fromEntries(
+        routing.locales.map((loc) => [loc, localeUrl(loc)]),
+      ),
+    },
+  }))
 }
-

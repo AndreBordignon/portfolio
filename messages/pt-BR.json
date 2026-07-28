@@ -7,48 +7,56 @@
   "navigation": {
     "home": "Início",
     "about": "Sobre",
-    "blog": "Blog",
-    "projects": "Projetos",
+    "projects": "Trabalhos",
+    "craft": "Ofício",
     "contact": "Contato"
   },
   "hero": {
-    "title": "André Bordignon",
-    "subtitle": "Desenvolvedor Front-End | React | React Native",
-    "viewProjects": "Ver Projetos",
-    "contact": "Entre em Contato"
+    "eyebrow": "Full-stack · React & React Native · Brasília, BR",
+    "lead": "Nove anos construindo produto web e mobile — do primeiro commit à cobrança recorrente. Interface que aguenta usuário real e a parte que ninguém quer fazer: performance, billing e deploy.",
+    "viewProjects": "Ver trabalhos",
+    "contact": "Entre em contato",
+    "beat2Label": "O que você está vendo",
+    "beat2": "Um gráfico de candles do Bitcoin desenhado em WebGL, partícula por partícula. É o mesmo tipo de dado que vira terreno de jogo no Candle Cross — porque dado bonito não vale nada até virar produto.",
+    "scrollCue": "Role para começar"
   },
-  "about": {
-    "title": "Sobre Mim",
-    "journey": {
-      "description1": "Engenheiro de Software com 9+ anos de experiência em desenvolvimento web e mobile, especializado em React e React Native. Atuação em projetos de alta complexidade, com foco em performance, experiência do usuário e liderança técnica.",
-      "description2": "Especializo-me em desenvolvimento full-stack, com foco especial em React para frontend e Node.js para backend. Adoro trabalhar em projetos desafiadores que me permitam aprender e crescer continuamente."
-    },
-    "skills": {
-      "title": "Habilidades Técnicas",
-      "description": "Tecnologias e ferramentas que domino para criar soluções digitais de alta qualidade. Organizadas por categoria para facilitar a identificação de competências específicas."
-    }
+  "manifesto": {
+    "index": "01 — Sobre",
+    "statement": "Eu não entrego tela bonita. Entrego produto que sobrevive ao segundo mês em produção.",
+    "paragraph1": "Sou engenheiro de software há mais de nove anos, especializado em React e React Native. Trabalho dentro de time — modernizando apps em produção usados todo dia no varejo — e sozinho, do zero, nos meus próprios produtos.",
+    "paragraph2": "Na prática: escolho a integração de pagamento pensando em Pix e NFS-e, caço 1.472ms de INP até o listener culpado, subo dependência em waves que dá pra reverter com um comando. E deixo a decisão escrita, porque daqui a um ano alguém vai perguntar por quê.",
+    "pullquote": "Software bom é o que ainda faz sentido no dia em que você precisa mudar.",
+    "availability": "Disponível para projetos"
   },
-  "blog": {
-    "title": "Artigos Recentes",
-    "description": "Alguns dos meus pensamentos e reflexões sobre tecnologia, desenvolvimento e outras coisas que me interessam.",
-    "loading": "Carregando artigos...",
-    "noPosts": "Nenhum artigo encontrado no momento."
+  "work": {
+    "index": "02 — Trabalhos",
+    "hint": "Role para atravessar →",
+    "title": "O que eu construí — e por que ficou assim.",
+    "description": "Produtos próprios, trabalho de cliente e código rodando em produção agora. Cada um com a decisão técnica que definiu o resultado.",
+    "counter": "projetos selecionados",
+    "decision": "Decisão técnica",
+    "open": "Abrir",
+    "moreLabel": "Tem mais",
+    "more": "Boilerplates, experimentos e projetos que nunca viraram case — tudo aberto no GitHub.",
+    "role": "Papel"
   },
-  "projects": {
-    "title": "Meus Projetos",
-    "description": "Aqui estão alguns dos projetos que desenvolvi, demonstrando minhas habilidades em diferentes tecnologias e áreas.",
-    "code": "Código",
-    "demo": "Demo"
+  "craft": {
+    "index": "03 — Ofício",
+    "title": "As ferramentas importam menos que saber quando não usá-las.",
+    "description": "Stack de produção, não lista de tutorial. O que está aqui é o que eu já quebrei, consertei e mantive rodando."
+  },
+  "contactSection": {
+    "index": "04 — Contato",
+    "title": "Vamos construir algo.",
+    "description": "Aberto a projeto freelance, produto próprio e conversa técnica sem compromisso. Respondo rápido no WhatsApp e no e-mail."
   },
   "contact": {
-    "title": "Entre em Contato",
-    "description": "Estou sempre interessado em novas oportunidades e projetos interessantes. Vamos conversar sobre como posso ajudar com seu próximo projeto!",
     "email": "Email",
     "github": "GitHub",
     "whatsapp": "WhatsApp",
     "substack": "Substack",
     "linkedin": "LinkedIn",
-    "sendMessage": "Envie uma Mensagem",
+    "sendMessage": "Envie uma mensagem",
     "form": {
       "name": "Nome",
       "namePlaceholder": "Seu nome",
@@ -57,22 +65,24 @@
       "subject": "Assunto",
       "subjectPlaceholder": "Assunto da mensagem",
       "message": "Mensagem",
-      "messagePlaceholder": "Sua mensagem...",
+      "messagePlaceholder": "Conta o que você quer construir...",
       "sending": "Enviando...",
-      "send": "Enviar Mensagem",
+      "send": "Enviar mensagem",
       "errors": {
         "fillAll": "Por favor, preencha todos os campos.",
         "invalidEmail": "Por favor, insira um email válido.",
         "sendError": "Erro ao enviar mensagem. Por favor, tente novamente mais tarde."
       },
-      "success": "Mensagem enviada com sucesso! Obrigado pelo contato, responderemos em breve."
+      "success": "Mensagem enviada. Obrigado pelo contato — respondo em breve."
     }
   },
   "footer": {
-    "copyright": "© 2025 André Bordignon. Todos os direitos reservados."
+    "builtWith": "Next.js · GSAP · React Three Fiber · Vercel",
+    "backToTop": "Voltar ao topo",
+    "rights": "Todos os direitos reservados.",
+    "copyright": "© 2026 André Bordignon. Todos os direitos reservados."
   },
   "api": {
     "error": "Erro ao carregar feed."
   }
 }
-

@@ -1,25 +1,39 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import Script from "next/script";
 import "../globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import HeaderNavigation from "../components/HeaderNavigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import WhatsappFloating from "../components/WhatsappFloating";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import SmoothScroll from "@/components/providers/SmoothScroll";
+import Cursor from "@/components/providers/Cursor";
+import Preloader from "@/components/chrome/Preloader";
+import Header from "@/components/chrome/Header";
+import Footer from "@/components/chrome/Footer";
+import ContactDock from "@/components/chrome/ContactDock";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Serifa editorial: só nos acentos tipográficos e nos números grandes.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
 });
 
 const baseUrl =
@@ -194,7 +208,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} grain vignette antialiased`}
       >
         <Script
           id="structured-data"
@@ -202,14 +216,28 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
           strategy="beforeInteractive"
         />
+
+        <a
+          href="#conteudo"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-6 focus:z-[100] focus:rounded-full focus:bg-bone focus:px-5 focus:py-3 focus:text-sm focus:text-ink"
+        >
+          {isPtBR ? "Pular para o conteúdo" : "Skip to content"}
+        </a>
+
         <NextIntlClientProvider messages={messages}>
-          <HeaderNavigation />
-          {children}
+          <SmoothScroll>
+            <Preloader />
+            <Cursor />
+            <Header />
+            {children}
+            <Footer />
+            <ContactDock />
+          </SmoothScroll>
         </NextIntlClientProvider>
+
         <GoogleAnalytics gaId="G-EEKP219BC9" />
         <Analytics />
         <SpeedInsights />
-        <WhatsappFloating />
       </body>
     </html>
   );

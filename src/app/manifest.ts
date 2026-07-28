@@ -9,7 +9,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Desenvolvedor Front-End especializado em React, React Native e Node.js com 9+ anos de experiência',
     start_url: '/',
     display: 'standalone',
-    background_color: '#1c1917',
+    background_color: '#07070a',
     theme_color: '#f97316',
     icons: [
       {
