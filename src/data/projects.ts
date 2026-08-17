@@ -73,29 +73,6 @@ export const projects: Project[] = [
     accent: "#fdba74",
   },
   {
-    slug: "ciss",
-    year: "2024 — hoje",
-    title: "CISS S.A.",
-    tagline: {
-      "pt-BR": "Apps React Native em produção, modernizados sem parar a esteira",
-      en: "Production React Native apps, modernized without stopping delivery",
-    },
-    description: {
-      "pt-BR":
-        "Desenvolvimento e modernização de apps Expo em produção no varejo. O desafio não é escrever a feature — é atualizar um app vivo sem quebrar quem depende dele todo dia.",
-      en: "Building and modernizing production Expo apps in retail. The hard part isn't shipping a feature — it's upgrading a live app without breaking the people who depend on it daily.",
-    },
-    highlight: {
-      "pt-BR":
-        "Modernização em waves: um cluster de dependência por PR, cada fase revertível com um git revert. Antes de qualquer bump arriscado, uma rede de testes Jest de caracterização — o app não tinha teste nenhum. New Architecture já ligada.",
-      en: "Modernization in waves: one dependency cluster per PR, every phase revertible with a single git revert. Before any risky bump, a Jest characterization net — the app had zero tests. New Architecture already enabled.",
-    },
-    role: { "pt-BR": "Engenharia mobile", en: "Mobile engineering" },
-    stack: ["React Native", "Expo SDK 53", "TypeScript", "Jest", "EAS", "Hermes"],
-    links: [],
-    accent: "#f97316",
-  },
-  {
     slug: "acop",
     year: "2026",
     title: "ACOP",
