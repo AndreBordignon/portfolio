@@ -191,7 +191,7 @@ export const services: Service[] = [
         },
       },
     ],
-    relatedCases: ["condostatus", "acop", "ciss"],
+    relatedCases: ["condostatus", "acop"],
   },
 
   {
